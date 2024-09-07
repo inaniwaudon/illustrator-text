@@ -4,6 +4,8 @@
 
 **illustrator-text** - a script for Adobe Illustrator that adjusts the font size just right. It adjusts font sizes line by line to represent text that is aligned at the beginnings and ends of a lines.
 
+![Illustrator におけるスクリプトの実行画面。文字サイズが調整される](thumbnail.gif)
+
 ## 使用方法
 
 ### スクリプトの入手

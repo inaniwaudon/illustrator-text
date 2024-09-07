@@ -5,7 +5,7 @@ module.exports = {
   entry: "./src/index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "ruby.jsx",
+    filename: "text.jsx",
     environment: {
       arrowFunction: false,
     },

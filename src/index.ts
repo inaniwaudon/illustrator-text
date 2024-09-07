@@ -54,6 +54,7 @@ const main = () => {
     return false;
   }
 
+  const left = textFrame.left;
   const width = textFrame.width;
   const positions = getPositions(textFrame);
 
@@ -65,19 +66,26 @@ const main = () => {
       continue;
     }
 
+    // 行間を取得
     if (lineGap === null) {
       lineGap =
         line.characterAttributes.leading - line.characterAttributes.size;
     }
 
+    // 文字サイズを調整
     const linePositions = positions[i];
-    const left = linePositions[0].x;
-    const right = linePositions.at(-1)!.x + linePositions.at(-1)!.width;
-    const lineWidth = right - left;
-    const size = (line.characterAttributes.size * width) / lineWidth;
+    const lineLeft = linePositions[0].x;
+    const lineRight = linePositions.at(-1)!.x + linePositions.at(-1)!.width;
+    const lineWidth = lineRight - lineLeft;
+
+    const ratio = width / lineWidth;
+    const size = line.characterAttributes.size * ratio;
     line.characterAttributes.size = size;
     line.characterAttributes.autoLeading = false;
     line.characterAttributes.leading = size + lineGap;
+
+    // 最初の文字のカーニングを調整
+    line.characters[0].kerning = (((left - lineLeft) * ratio) / size) * 1000;
   }
 };
 
